@@ -1,24 +1,21 @@
 package com.example.preprojectscheduler.service;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import com.example.preprojectscheduler.entity.User;
 import com.example.preprojectscheduler.repository.UserRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-
+@RequiredArgsConstructor
 @Service
 public class NotificationService {
     private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
-    UserRepository userRepository;
-    public NotificationService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository;
 
     @Transactional
     @Scheduled(cron = "0 */5 * * * *")
